@@ -7,7 +7,7 @@ namespace InstagramClone.DAL.Interfaces
 {
     public interface IUnitOfWork
     {
-
+        IUserRepository UserRepository { get }
         Task<int> SaveAsync();
     }
 }

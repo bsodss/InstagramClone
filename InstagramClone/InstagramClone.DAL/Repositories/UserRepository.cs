@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using InstagramClone.DAL.Entities;
 using InstagramClone.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace InstagramClone.DAL.Repositories
 {
     public class UserRepository:IUserRepository
     {
-
         private readonly InstagramCloneDbContext _db;
 
         public UserRepository(InstagramCloneDbContext db)
@@ -20,32 +20,46 @@ namespace InstagramClone.DAL.Repositories
 
         public IQueryable<User> FindAll()
         {
-            throw new NotImplementedException();
+            return _db.Users;
         }
 
         public async Task<User> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return await _db.Users.FirstOrDefaultAsync(i => i.Id == Guid.Parse(id));
         }
 
         public async Task AddAsync(User entity)
         {
-            throw new NotImplementedException();
+            await _db.Users.AddAsync(entity);
         }
 
         public void Update(User entity)
-        {
-            throw new NotImplementedException();
+        { 
+            _db.Users.Update(entity);
         }
 
         public void Delete(User entity)
         {
-            throw new NotImplementedException();
+            _db.Users.Remove(entity);
         }
 
         public async Task DeleteByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            var user = await _db.Users.FirstAsync(i => i.Id == Guid.Parse(id));
+            _db.Users.Remove(user);
+        }
+
+        public IQueryable<User> FindAllWithDetails()
+        {
+            return _db.Users.Include(i => i.UserProfile)
+                .Include(i => i.Posts)
+                .Include(i => i.Subscriptions)
+                .Include(i => i.Subscribers);
+        }
+
+        public User GetByIdWithDetails(string id)
+        {
+            return FindAllWithDetails().FirstOrDefault(i => i.Id == Guid.Parse(id));
         }
     }
 }
