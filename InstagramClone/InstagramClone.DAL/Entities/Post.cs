@@ -8,7 +8,7 @@ namespace InstagramClone.DAL.Entities
     public class Post : BaseEntity
     {
         [Required]
-        public string[] Photos { get; set; }
+        public byte[] Photo { get; set; }
         public string PostText { get; set; }
 
         [DataType(DataType.Date)]
