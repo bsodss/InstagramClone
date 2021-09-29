@@ -60,7 +60,12 @@ namespace InstagramClone.DAL.Migrations
                     b.Property<string>("PostText")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -96,6 +101,30 @@ namespace InstagramClone.DAL.Migrations
                     b.ToTable("UserProfile");
                 });
 
+            modelBuilder.Entity("InstagramClone.DAL.Entities.UserRelations", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RequestedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RequestedToId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestedById");
+
+                    b.HasIndex("RequestedToId");
+
+                    b.ToTable("UserRelations");
+                });
+
             modelBuilder.Entity("InstagramClone.DAL.Entities.Comment", b =>
                 {
                     b.HasOne("InstagramClone.DAL.Entities.Post", "Post")
@@ -115,6 +144,13 @@ namespace InstagramClone.DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("InstagramClone.DAL.Entities.Post", b =>
+                {
+                    b.HasOne("InstagramClone.DAL.Entities.User", null)
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("InstagramClone.DAL.Entities.UserProfile", b =>
                 {
                     b.HasOne("InstagramClone.DAL.Entities.User", "User")
@@ -126,6 +162,25 @@ namespace InstagramClone.DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("InstagramClone.DAL.Entities.UserRelations", b =>
+                {
+                    b.HasOne("InstagramClone.DAL.Entities.User", "RequestedBy")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("RequestedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("InstagramClone.DAL.Entities.User", "RequestedTo")
+                        .WithMany("Subscribers")
+                        .HasForeignKey("RequestedToId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("RequestedBy");
+
+                    b.Navigation("RequestedTo");
+                });
+
             modelBuilder.Entity("InstagramClone.DAL.Entities.Post", b =>
                 {
                     b.Navigation("Comments");
@@ -133,6 +188,12 @@ namespace InstagramClone.DAL.Migrations
 
             modelBuilder.Entity("InstagramClone.DAL.Entities.User", b =>
                 {
+                    b.Navigation("Posts");
+
+                    b.Navigation("Subscribers");
+
+                    b.Navigation("Subscriptions");
+
                     b.Navigation("UserProfile");
                 });
 #pragma warning restore 612, 618
