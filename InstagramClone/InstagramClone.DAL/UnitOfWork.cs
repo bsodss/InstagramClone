@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using InstagramClone.DAL.Entities;
 using InstagramClone.DAL.Interfaces;
 using InstagramClone.DAL.Repositories;
 
@@ -11,18 +12,16 @@ namespace InstagramClone.DAL
     {
         private readonly InstagramCloneDbContext _db;
 
-        private IUserRepository _userRepository;
-
-        public IUserRepository UserRepository {
-            get
-            {
-                return _userRepository ??= new UserRepository(_db);
-            }
-        }
-
         public UnitOfWork(InstagramCloneDbContext db)
         {
             _db = db;
+
+        }
+
+        
+        public IRepository<T> GetGenericRepository<T>() where T : BaseEntity
+        {
+            return new GenericRepository<T>(_db);
         }
 
         public async Task<int> SaveAsync()
