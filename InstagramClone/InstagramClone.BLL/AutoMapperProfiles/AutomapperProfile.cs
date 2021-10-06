@@ -12,12 +12,20 @@ namespace InstagramClone.BLL.AutoMapperProfiles
     {
         public AutoMapperProfile()
         {
-           //UserModel map
+           //UserModel
            CreateMap<User, UserModel>()
                .ForMember(m => m.UserModelSubscribersIds,
                    opt => opt.MapFrom(req => req.Subscribers.Select(s => s.Id)))
                .ForMember(m=>m.UserModelSubscriptionsIds,
                    opt=>opt.MapFrom(req=>req.Subscriptions.Select(s=>s.Id))).ReverseMap();
+
+           //PostModel
+           CreateMap<Post, PostModel>()
+               .ForMember(m => m.CommentsIds,
+                   opt => opt.MapFrom(req => req.Comments.Select(s => s.Id))).ReverseMap();
+
+           //CommentModel
+           CreateMap<Comment, CommentModel>().ReverseMap();
         }
 
     }
