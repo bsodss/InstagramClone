@@ -27,9 +27,13 @@ namespace InstagramClone.BLL.Services
 
         public IEnumerable<UserModel> GetAll()
         {
-            return _mapper.Map<IEnumerable<UserModel>>(_uow.GetGenericRepository<User>().FindAllWithDetails(s1=>s1.Subscribers,
-                s2=>s2.Subscriptions, p=>p.Posts).AsAsyncEnumerable());
+            return _mapper.Map<IEnumerable<UserModel>>(GetUsersWithDetails().AsAsyncEnumerable());
         }
+
+        private IQueryable<User> GetUsersWithDetails() => _uow.GetGenericRepository<User>().FindAllWithDetails(
+            s1 => s1.Subscribers,
+            s2 => s2.Subscriptions, p => p.Posts, up => up.UserProfile);
+
 
         public async Task<UserModel> GetByIdAsync(string id)
         {
@@ -38,8 +42,7 @@ namespace InstagramClone.BLL.Services
                 throw new InstagramCloneException("Parameter id can not be null!");
             }
 
-            var user = await _uow.GetGenericRepository<User>().FindAllWithDetails(s1 => s1.Subscribers,
-                s2 => s2.Subscriptions, p => p.Posts).FirstOrDefaultAsync(f => f.Id == Guid.Parse(id));
+            var user = await GetUsersWithDetails().FirstOrDefaultAsync(f => f.Id == Guid.Parse(id));
 
             if (user == null)
             {
@@ -65,10 +68,7 @@ namespace InstagramClone.BLL.Services
             throw new NotImplementedException();
         }
 
-        private IQueryable<User> GetUsersWithDetails() => _uow.GetGenericRepository<User>().FindAllWithDetails(
-            s1 => s1.Subscribers,
-            s2 => s2.Subscriptions, p => p.Posts, up => up.UserProfile);
-
+    
         public async Task<UserModel> FindByUserNameAsync(string username)
         {
             if (username == null)
