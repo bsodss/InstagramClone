@@ -7,7 +7,6 @@ using InstagramClone.DAL.Entities;
 namespace InstagramClone.BLL.Interfaces
 {
     public interface IBaseService<TModel>
-        where TModel : BaseEntity
     {
         IEnumerable<TModel> GetAll();
 
