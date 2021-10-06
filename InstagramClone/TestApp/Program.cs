@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using InstagramClone.DAL;
 using InstagramClone.DAL.Entities;
 using InstagramClone.DAL.Interfaces;
@@ -9,7 +10,7 @@ namespace TestApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
 
 
@@ -51,7 +52,18 @@ namespace TestApp
                 {
                     Console.WriteLine($"{user.Id}");
                 }
-                
+
+                await users.AddAsync(new User()
+                {
+                    UserProfile = new UserProfile()
+                    {
+                        IsPrivate = false,
+                        UserName = "Vasya123"
+                    }
+                });
+                await uow.SaveAsync();
+                Console.WriteLine("After-------->");
+
                 var users2 = uow.GetGenericRepository<User>();
                 foreach (var user in users2.FindAll())
                 {
