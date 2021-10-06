@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using InstagramClone.BLL.Interfaces;
 using InstagramClone.BLL.Models;
+using InstagramClone.BLL.Validation;
 using InstagramClone.DAL.Entities;
 using InstagramClone.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace InstagramClone.BLL.Services
 {
@@ -23,16 +25,28 @@ namespace InstagramClone.BLL.Services
         }
 
 
-        //private IQueryable<Post> GetPostsWithDetails()=> _uow.GetGenericRepository<Post>().FindAllWithDetails()
+        private IQueryable<Post> GetPostsWithDetails() => _uow.GetGenericRepository<Post>().FindAllWithDetails(
+            user => user.User,
+            comment => comment.Comments);
 
         public IEnumerable<PostModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _mapper.Map<IEnumerable<PostModel>>(GetPostsWithDetails().AsEnumerable());
         }
 
         public async Task<PostModel> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                throw new InstagramCloneException("Parameter id can not be null");
+            }
+            var post = await GetPostsWithDetails().FirstOrDefaultAsync(f => f.Id == Guid.Parse(id));
+            if (post == null)
+            {
+                throw new InstagramCloneException("Post with such id does not exist!");
+            }
+
+            return _mapper.Map<PostModel>(post);
         }
 
         public async Task AddAsync(PostModel model)
@@ -52,7 +66,20 @@ namespace InstagramClone.BLL.Services
 
         public async Task<IEnumerable<PostModel>> GetUserPosts(string userId)
         {
-            throw new NotImplementedException();
+            if (userId == null)
+            {
+                throw new InstagramCloneException("Parameter id can not be null");
+            }
+
+            IEnumerable<Post> posts = null;
+            await Task.Run(() => {  posts = GetPostsWithDetails().Where(f => f.UserId == Guid.Parse(userId)); });
+            
+            if (posts == null)
+            {
+                throw new InstagramCloneException("Posts with such userId does not exist!");
+            }
+
+            return _mapper.Map<IEnumerable<PostModel>>(posts);
         }
     }
 }
