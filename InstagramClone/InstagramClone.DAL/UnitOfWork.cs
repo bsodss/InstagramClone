@@ -20,10 +20,7 @@ namespace InstagramClone.DAL
 
         public IRepository<T> GetGenericRepository<T>() where T : BaseEntity
         {
-            if (_repositoriesFactory == null)
-            {
-                _repositoriesFactory = new Dictionary<Type, object>();
-            }
+            _repositoriesFactory ??= new Dictionary<Type, object>();
 
             var type = typeof(T);
 
