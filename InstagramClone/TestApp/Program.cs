@@ -58,7 +58,6 @@ namespace TestApp
                     Console.WriteLine($"{user.Id}");
                 }
 
-                Console.WriteLine("❤️");
             }
 
         }
