@@ -1,0 +1,15 @@
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\bin\Debug\netcoreapp3.1\InstagramClone.BLL.deps.json
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\bin\Debug\netcoreapp3.1\InstagramClone.BLL.runtimeconfig.json
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\bin\Debug\netcoreapp3.1\InstagramClone.BLL.runtimeconfig.dev.json
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\bin\Debug\netcoreapp3.1\InstagramClone.BLL.dll
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\bin\Debug\netcoreapp3.1\InstagramClone.BLL.pdb
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\bin\Debug\netcoreapp3.1\InstagramClone.DAL.dll
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\bin\Debug\netcoreapp3.1\InstagramClone.DAL.pdb
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\obj\Debug\netcoreapp3.1\InstagramClone.BLL.csproj.AssemblyReference.cache
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\obj\Debug\netcoreapp3.1\InstagramClone.BLL.AssemblyInfoInputs.cache
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\obj\Debug\netcoreapp3.1\InstagramClone.BLL.AssemblyInfo.cs
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\obj\Debug\netcoreapp3.1\InstagramClone.BLL.csproj.CoreCompileInputs.cache
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\obj\Debug\netcoreapp3.1\InstagramClone.BLL.csproj.CopyComplete
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\obj\Debug\netcoreapp3.1\InstagramClone.BLL.dll
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\obj\Debug\netcoreapp3.1\InstagramClone.BLL.pdb
+F:\Project\InstagramClone\InstagramClone\InstagramClone.BLL\obj\Debug\netcoreapp3.1\InstagramClone.BLL.genruntimeconfig.cache

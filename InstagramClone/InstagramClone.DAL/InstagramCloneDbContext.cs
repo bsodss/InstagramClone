@@ -21,8 +21,9 @@ namespace InstagramClone.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserSubscriptionsConfigurations());
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UserSubscriptionsConfigurations());
+            modelBuilder.ApplyConfiguration(new PostConfiguration());
         }
 
 

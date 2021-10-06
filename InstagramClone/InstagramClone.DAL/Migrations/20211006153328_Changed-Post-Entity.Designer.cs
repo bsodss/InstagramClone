@@ -4,14 +4,16 @@ using InstagramClone.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InstagramClone.DAL.Migrations
 {
     [DbContext(typeof(InstagramCloneDbContext))]
-    partial class InstagramCloneDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211006153328_Changed-Post-Entity")]
+    partial class ChangedPostEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
