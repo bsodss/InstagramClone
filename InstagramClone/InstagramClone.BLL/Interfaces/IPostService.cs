@@ -8,6 +8,6 @@ namespace InstagramClone.BLL.Interfaces
 {
     public interface IPostService: IBaseService<PostModel>
     {
-        Task<IEnumerable<PostModel>> GetUserPosts(string userId);
+        Task<IEnumerable<PostModel>> GetUserPostsAsync(string userId);
     }
 }

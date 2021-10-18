@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using InstagramClone.BLL.Interfaces;
@@ -64,7 +65,7 @@ namespace InstagramClone.BLL.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<PostModel>> GetUserPosts(string userId)
+        public async Task<IEnumerable<PostModel>> GetUserPostsAsync(string userId)
         {
             if (userId == null)
             {
@@ -72,8 +73,8 @@ namespace InstagramClone.BLL.Services
             }
 
             IEnumerable<Post> posts = null;
-            await Task.Run(() => {  posts = GetPostsWithDetails().Where(f => f.UserId == Guid.Parse(userId)); });
-            
+            await Task.Run(() => { posts = GetPostsWithDetails().Where(f => f.UserId == Guid.Parse(userId)); });
+
             if (posts == null)
             {
                 throw new InstagramCloneException("Posts with such userId does not exist!");

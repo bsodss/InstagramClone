@@ -8,7 +8,7 @@ using InstagramClone.DAL.Repositories;
 
 namespace InstagramClone.DAL
 {
-    public class UnitOfWork:IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly InstagramCloneDbContext _db;
         private  IDictionary<Type, object> _repositoriesFactory;

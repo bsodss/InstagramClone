@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstagramClone.DAL", "InstagramClone.DAL\InstagramClone.DAL.csproj", "{C58FD3F5-409F-48DC-824A-16753163FFB8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{0F16AB19-B14D-4F9A-B6ED-8DE3345F5DA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InstagramClone.BLL", "InstagramClone.BLL\InstagramClone.BLL.csproj", "{A68A16DC-E94F-486C-AB1B-4177F2ED6C93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstagramClone.BLL", "InstagramClone.BLL\InstagramClone.BLL.csproj", "{A68A16DC-E94F-486C-AB1B-4177F2ED6C93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstagramClone.WebApi", "InstagramClone.WebApi\InstagramClone.WebApi.csproj", "{6EF518D3-DEF5-45BC-8671-1125E19FECB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{C58FD3F5-409F-48DC-824A-16753163FFB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C58FD3F5-409F-48DC-824A-16753163FFB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C58FD3F5-409F-48DC-824A-16753163FFB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F16AB19-B14D-4F9A-B6ED-8DE3345F5DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F16AB19-B14D-4F9A-B6ED-8DE3345F5DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F16AB19-B14D-4F9A-B6ED-8DE3345F5DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F16AB19-B14D-4F9A-B6ED-8DE3345F5DA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A68A16DC-E94F-486C-AB1B-4177F2ED6C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A68A16DC-E94F-486C-AB1B-4177F2ED6C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A68A16DC-E94F-486C-AB1B-4177F2ED6C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A68A16DC-E94F-486C-AB1B-4177F2ED6C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EF518D3-DEF5-45BC-8671-1125E19FECB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EF518D3-DEF5-45BC-8671-1125E19FECB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EF518D3-DEF5-45BC-8671-1125E19FECB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EF518D3-DEF5-45BC-8671-1125E19FECB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

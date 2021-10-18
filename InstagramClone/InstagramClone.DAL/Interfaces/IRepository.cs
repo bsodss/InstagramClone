@@ -18,7 +18,7 @@ namespace InstagramClone.DAL.Interfaces
         void Delete(TEntity entity);
         Task DeleteByIdAsync(string id);
         IQueryable<TEntity> FindAllWithDetails(params Expression<Func<TEntity, object>>[] includes);
-        TEntity FindByIdWithDetails(string id);
+       
     }
 
     

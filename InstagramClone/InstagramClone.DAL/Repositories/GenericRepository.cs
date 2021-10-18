@@ -60,9 +60,6 @@ namespace InstagramClone.DAL.Repositories
             return query ?? dbSet;
         }
 
-        public TEntity FindByIdWithDetails(string id)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
