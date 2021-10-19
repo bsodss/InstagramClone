@@ -30,7 +30,7 @@ namespace InstagramClone.BLL.Services
             return _mapper.Map<IEnumerable<UserModel>>(GetUsersWithDetails().AsAsyncEnumerable());
         }
 
-        private IQueryable<User> GetUsersWithDetails() => _uow.GetGenericRepository<User>().FindAllWithDetails(
+        private IQueryable<Account> GetUsersWithDetails() => _uow.GetGenericRepository<Account>().FindAllWithDetails(
             s1 => s1.Subscribers,
             s2 => s2.Subscriptions, p => p.Posts, up => up.UserProfile);
 
@@ -60,7 +60,7 @@ namespace InstagramClone.BLL.Services
         public async Task UpdateAsync(UserModel model)
         {
 
-            await Task.Run(()=> _uow.GetGenericRepository<User>().Update(_mapper.Map<User>(model)));
+            await Task.Run(()=> _uow.GetGenericRepository<Account>().Update(_mapper.Map<Account>(model)));
         }
 
         public async Task DeleteByIdAsync(string modelId)

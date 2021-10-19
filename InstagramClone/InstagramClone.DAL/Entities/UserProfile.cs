@@ -9,7 +9,7 @@ namespace InstagramClone.DAL.Entities
     {
         [Key]
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        public Account User { get; set; }
 
         [Required]
         public string UserName { get; set; }

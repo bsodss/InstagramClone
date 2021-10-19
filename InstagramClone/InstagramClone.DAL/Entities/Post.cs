@@ -12,7 +12,7 @@ namespace InstagramClone.DAL.Entities
         public string PostText { get; set; }
 
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        public Account User { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DatePosted { get; set; }

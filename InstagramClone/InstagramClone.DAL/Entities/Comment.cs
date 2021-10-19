@@ -8,7 +8,7 @@ namespace InstagramClone.DAL.Entities
     public class Comment : BaseEntity
     {
         public Guid UserId { get; set; }
-        public User User { get; set; }
+        public Account User { get; set; }
 
         [Required]
         public string CommentText { get; set; }

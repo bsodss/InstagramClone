@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace InstagramClone.DAL.Configurations
 {
-    public class UserSubscriptionsConfigurations : IEntityTypeConfiguration<UserRelations>
+    public class UserSubscriptionsConfigurations : IEntityTypeConfiguration<UserRelation>
     {
-        public void Configure(EntityTypeBuilder<UserRelations> builder)
+        public void Configure(EntityTypeBuilder<UserRelation> builder)
         {
             builder.HasOne(o => o.RequestedBy)
                 .WithMany(m => m.Subscriptions)

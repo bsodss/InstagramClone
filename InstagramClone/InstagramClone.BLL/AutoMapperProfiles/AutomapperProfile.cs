@@ -13,7 +13,7 @@ namespace InstagramClone.BLL.AutoMapperProfiles
         public AutoMapperProfile()
         {
            //UserModel
-           CreateMap<User, UserModel>()
+           CreateMap<Account, UserModel>()
                .ForMember(m => m.UserModelSubscribersIds,
                    opt => opt.MapFrom(req => req.Subscribers.Select(s => s.Id)))
                .ForMember(m=>m.UserModelSubscriptionsIds,
