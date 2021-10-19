@@ -52,7 +52,7 @@ namespace InstagramClone.BLL.Services
 
         public async Task AddAsync(PostModel model)
         {
-            throw new NotImplementedException();
+            
         }
 
         public async Task UpdateAsync(PostModel model)
