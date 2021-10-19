@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -19,6 +21,7 @@ namespace InstagramClone.BLL.Services
         private readonly IUnitOfWork _uow;
         private readonly JwtHandler _jwtHandler;
         private readonly UserManager<InstagramUser> _userManager;
+
         public AuthorizationService(IUnitOfWork uow, JwtHandler jwtHandler, UserManager<InstagramUser> userManager)
         {
             _uow = uow;
@@ -42,13 +45,46 @@ namespace InstagramClone.BLL.Services
                 UserName = model.Email
             };
             var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                await _uow.GetGenericRepository<Account>().AddAsync(new Account()
+                {
+                    UserAccount = user,
+                    UserProfile = new UserProfile()
+                    {
+                        IsPrivate = false,
+                        ProfileDescription = "",
+                        UserName = model.UserName
+                    }
+                });
+                await _userManager.AddToRoleAsync(user, "User");
+                await _uow.SaveAsync();
+            }
 
-
+            return new RegisterResponseModel()
+                { IsSuccessful = result.Succeeded, Errors = result.Errors.Select(e => e.Description) }; 
         }
 
         public async Task<LoginResponseModel> LogInUserAsync(LoginModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                throw new InstagramCloneException("You did not provide correct data", nameof(RegisterUserAsync));
+            }
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password))
+            {
+                return new LoginResponseModel() { IsAuthSuccessful = false, ErrorMessage = "Invalid Authentication" };
+            }
+            var signingCredentials = _jwtHandler.GetSigningCredentials();
+            var claims = await _jwtHandler.GetClaims(user);
+            var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            return new LoginResponseModel()
+            {
+                IsAuthSuccessful = true,
+                Token = token
+            };
         }
     }
 }
