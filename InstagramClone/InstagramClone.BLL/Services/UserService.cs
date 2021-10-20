@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InstagramClone.BLL.Services
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
@@ -54,13 +54,20 @@ namespace InstagramClone.BLL.Services
 
         public async Task AddAsync(UserModel model)
         {
-            throw new NotImplementedException();
+            if (model == null)
+            {
+                throw new InstagramCloneException("Model is null");
+            }
+            model.UserId = Guid.NewGuid();
+            await _uow.GetGenericRepository<Account>().AddAsync(_mapper.Map<Account>(model));
+
+            await _uow.SaveAsync();
         }
 
         public async Task UpdateAsync(UserModel model)
         {
 
-            await Task.Run(()=> _uow.GetGenericRepository<Account>().Update(_mapper.Map<Account>(model)));
+            await Task.Run(() => _uow.GetGenericRepository<Account>().Update(_mapper.Map<Account>(model)));
         }
 
         public async Task DeleteByIdAsync(string modelId)
@@ -68,7 +75,7 @@ namespace InstagramClone.BLL.Services
             throw new NotImplementedException();
         }
 
-    
+
         public async Task<UserModel> FindByUserNameAsync(string username)
         {
             if (username == null)

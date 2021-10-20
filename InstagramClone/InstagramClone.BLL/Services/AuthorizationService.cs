@@ -57,7 +57,7 @@ namespace InstagramClone.BLL.Services
                         UserName = model.UserName
                     }
                 });
-                await _userManager.AddToRoleAsync(user, "User");
+                //await _userManager.AddToRoleAsync(user, "User");
                 await _uow.SaveAsync();
             }
 

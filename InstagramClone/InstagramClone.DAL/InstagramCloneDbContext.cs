@@ -11,8 +11,8 @@ namespace InstagramClone.DAL
     {
         public InstagramCloneDbContext(DbContextOptions<InstagramCloneDbContext> options) : base(options)
         {
-            Database.EnsureDeleted();
-            //Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
 
         public DbSet<Account> Accounts { get; set; }

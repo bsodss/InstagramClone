@@ -74,3 +74,8 @@ F:\Project\InstagramClone\InstagramClone\InstagramClone.WebApi\obj\Debug\netcore
 F:\Project\InstagramClone\InstagramClone\InstagramClone.WebApi\obj\Debug\netcoreapp3.1\InstagramClone.WebApi.genruntimeconfig.cache
 F:\Project\InstagramClone\InstagramClone\InstagramClone.WebApi\bin\Debug\netcoreapp3.1\Humanizer.dll
 F:\Project\InstagramClone\InstagramClone\InstagramClone.WebApi\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+F:\Project\InstagramClone\InstagramClone\InstagramClone.WebApi\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+F:\Project\InstagramClone\InstagramClone\InstagramClone.WebApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+F:\Project\InstagramClone\InstagramClone\InstagramClone.WebApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\Project\InstagramClone\InstagramClone\InstagramClone.WebApi\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\Project\InstagramClone\InstagramClone\InstagramClone.WebApi\obj\Debug\netcoreapp3.1\InstagramClone.WebApi.MvcApplicationPartsAssemblyInfo.cs

@@ -9,14 +9,18 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using InstagramClone.BLL.AutoMapperProfiles;
+using InstagramClone.BLL.Interfaces;
 using InstagramClone.BLL.JwtFeatures;
+using InstagramClone.BLL.Services;
 using InstagramClone.DAL;
 using InstagramClone.DAL.Entities;
 using InstagramClone.DAL.Interfaces;
+using InstagramClone.DAL.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -39,13 +43,17 @@ namespace InstagramClone.WebApi
             services.AddDbContext<InstagramCloneDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<InstagramUser, IdentityRole>()
+            services.AddIdentity<InstagramUser, IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<InstagramCloneDbContext>()
                 .AddDefaultTokenProviders();
 
-
+            services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<JwtHandler>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient(typeof(IRepository<>), typeof(GenericRepository<>));
+            services.AddTransient<IAuthorizationService, AuthorizationService>();
+            services.AddTransient<IUserService, UserService>();
+
 
             var mappperCfg = new MapperConfiguration(c =>
             {
